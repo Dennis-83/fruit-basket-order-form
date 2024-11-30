@@ -1,16 +1,21 @@
+import Button from "../Button/Button.jsx";
 
-function FruitCounter({icon, title,name, counter, setCounterState}) {
-    console.log(setCounterState);
+function FruitCounter({icon, title, counter, handleClick, fruitType}) {
+    // console.log(fruitType);
     return (
-        <div className="fruit-counter"> {icon}{title}
-            <button disabled={counter <= 0}
-                    type="button" onClick={() => setCounterState.name(counter - 1)}>
-                -
-            </button>
+        <div className="fruit-counter"> {title} {icon}
+            <Button
+                type='button'
+                title='-'
+                disabled={counter <= 0}
+                onclick={() => handleClick(`${fruitType}Counter`, -1)}
+            />
             {counter}
-            <button type="button" onClick={() => setCounterState.name(counter + 1)}>
-                +
-            </button>
+            <Button
+                type='button'
+                title='+'
+                onclick={() => handleClick(`${fruitType}Counter`, +1)}
+            />
         </div>
     );
 }

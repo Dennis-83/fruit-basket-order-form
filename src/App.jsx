@@ -27,8 +27,6 @@ function App() {
             ...counterState,
             [counterName]: (counterState[counterName] + newValue)
         })
-        // console.log(counter, newValue);
-        // console.log(counterState);
     }
 
     function resetCounters() {
@@ -69,65 +67,34 @@ function App() {
         <>
             <h1>Fruitmand bezorgservice</h1>
             <section>
-
-                <div className="fruit-counter"> Aardbeien 🍓
-                    <Button
-                        type = 'button'
-                        title = '-'
-                        disabled = {counterState.strawberryCounter <= 0}
-                        onclick = {() => handleClick('strawberryCounter', -1)}
+                <FruitCounter
+                    icon = '🍓'
+                    title='Aardbeien'
+                    fruitType = 'strawberry'
+                    counter = {counterState.strawberryCounter}
+                    handleClick = {handleClick}
                     />
-                    {counterState.strawberryCounter}
-                    <Button
-                        type = 'button'
-                        title='+'
-                        onclick={() => handleClick('strawberryCounter', +1)}
-                    />
-                </div>
-                <div className="fruit-counter"> Bananen 🍌
-                    <button disabled={counterState.bananaCounter <= 0}
-                            type="button" onClick={() => handleClick('bananaCounter', -1)}>
-                        -
-                    </button>
-                    {counterState.bananaCounter}
-                    <button type="button" onClick={() => handleClick('bananaCounter', +1)}>
-                        +
-                    </button>
-                </div>
-                <div className="fruit-counter"> Appels 🍏
-                    <button disabled={counterState.appleCounter <= 0}
-                            type="button" onClick={() => handleClick('appleCounter', -1)}>
-                        -
-                    </button>
-                    {counterState.appleCounter}
-                    <button type="button" onClick={() => handleClick('appleCounter', +1)}>
-                        +
-                    </button>
-                </div>
-                <div className="fruit-counter"> Kiwi's 🥝
-                    <button disabled={counterState.kiwiCounter <= 0}
-                            type="button" onClick={() => handleClick('kiwiCounter', -1)}>
-                        -
-                    </button>
-                    {counterState.kiwiCounter}
-                    <button type="button" onClick={() => handleClick('kiwiCounter', +1)}>
-                        +
-                    </button>
-                </div>
-
-                {/*<FruitCounter*/}
-                {/*    icon="🍓"*/}
-                {/*    title = "Aardbeien"*/}
-                {/*    name = "strawberryCounter"*/}
-                {/*    counter={counterState.strawberryCounter}*/}
-                {/*    setCounterState={setCounterState}*/}
-                {/*/>*/}
-                {/*<FruitCounter*/}
-                {/*    icon="🍌"*/}
-                {/*title="Bananen"*/}
-                {/*counter={counter}*/}
-                {/*setCounter={setCounter}*/}
-                {/*/>*/}
+                <FruitCounter
+                    icon = '🍌'
+                    title='Bananen'
+                    fruitType = 'banana'
+                    counter = {counterState.bananaCounter}
+                    handleClick = {handleClick}
+                />
+                <FruitCounter
+                    icon = '🍏'
+                    title='Appels'
+                    fruitType = 'apple'
+                    counter = {counterState.appleCounter}
+                    handleClick = {handleClick}
+                />
+                <FruitCounter
+                    icon = '🥝'
+                    title= "Kiwi's"
+                    fruitType = 'kiwi'
+                    counter = {counterState.kiwiCounter}
+                    handleClick = {handleClick}
+                 />
 
                 <Button
                     type='button'
@@ -216,10 +183,9 @@ function App() {
                     />Ik ga akkoord met de voorwaarden</label></p>
 
                 {/*Verzend button logt zowel formState als counterState in de terminal*/}
-                <button type="button" onClick={handleSubmit}>Verzend</button>
                 <Button
                     type='button'
-                    title='Verzenden'
+                    title='Verzend'
                     onclick={handleSubmit}
                 />
 
