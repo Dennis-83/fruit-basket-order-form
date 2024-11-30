@@ -1,6 +1,7 @@
 import './App.css'
 import {useState} from "react";
 import FruitCounter from "./assets/components/FruitCounter/FruitCounter.jsx";
+import Button from "./assets/components/Button/Button.jsx";
 
 function App() {
     const [counterState, setCounterState] = useState({
@@ -70,14 +71,18 @@ function App() {
             <section>
 
                 <div className="fruit-counter"> Aardbeien 🍓
-                    <button disabled={counterState.strawberryCounter <= 0}
-                            type="button" onClick={() => handleClick('strawberryCounter', -1)}>
-                        -
-                    </button>
+                    <Button
+                        type = 'button'
+                        title = '-'
+                        disabled = {counterState.strawberryCounter <= 0}
+                        onclick = {() => handleClick('strawberryCounter', -1)}
+                    />
                     {counterState.strawberryCounter}
-                    <button type="button" onClick={() => handleClick('strawberryCounter', +1)}>
-                        +
-                    </button>
+                    <Button
+                        type = 'button'
+                        title='+'
+                        onclick={() => handleClick('strawberryCounter', +1)}
+                    />
                 </div>
                 <div className="fruit-counter"> Bananen 🍌
                     <button disabled={counterState.bananaCounter <= 0}
@@ -124,7 +129,11 @@ function App() {
                 {/*setCounter={setCounter}*/}
                 {/*/>*/}
 
-                <button type="button" onClick={resetCounters}>Reset</button>
+                <Button
+                    type='button'
+                    title='Reset'
+                    onclick={resetCounters}
+                />
             </section>
 
             <form className="order-form">
@@ -208,6 +217,11 @@ function App() {
 
                 {/*Verzend button logt zowel formState als counterState in de terminal*/}
                 <button type="button" onClick={handleSubmit}>Verzend</button>
+                <Button
+                    type='button'
+                    title='Verzenden'
+                    onclick={handleSubmit}
+                />
 
             </form>
 

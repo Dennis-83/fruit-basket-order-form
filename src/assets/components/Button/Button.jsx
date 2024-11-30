@@ -1,14 +1,13 @@
-// @flow
-import * as React from 'react';
-
-type Props = {
-
-};
-
-export function Button(props: Props) {
+function Button({type, title, disabled, onclick}) {
+    // console.log(props);
     return (
-        <div>
-
-        </div>
+        <button
+            type= {type}
+            disabled= {disabled}
+            onClick={onclick}>
+            {title}
+        </button>
     );
-};
+}
+
+export default Button;
