@@ -1,12 +1,16 @@
 body {
-    background-color: darkslategrey;
+    background-color: #49516F;
+}
+
+h1 {
+    background-color: #8EA4D2;
 }
 
 .fruit-counter {
-    background-color: lightsteelblue;
+    background-color: #8EA4D2;
 }
 
 .order-form {
-    background-color: steelblue;
+    background-color: #8EA4D2;
 }
 

@@ -2,6 +2,7 @@ import './App.css'
 import {useState} from "react";
 import FruitCounter from "./assets/components/FruitCounter/FruitCounter.jsx";
 import Button from "./assets/components/Button/Button.jsx";
+import FormInputField from "./assets/components/FormInputField/FormInputField.jsx";
 
 function App() {
     const [counterState, setCounterState] = useState({
@@ -11,17 +12,19 @@ function App() {
         kiwiCounter: 0
     });
     const [formState, setFormState] = useState({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         age: 0,
-        postcode: '',
-        deliveryFrequency: '',
-        timeslot: 'day',
+        postCode: '',
+        deliveryFrequency: 'weekly',
+        timeSlot: 'day',
         comments: '',
         terms: false
 
     });
 
+    // handleClick zorgt voor het op- en aftellen van de counters
+    // waarde -1 of +1 wordt meegegeven afhankelijk van de button
     function handleClick(counterName, newValue) {
         setCounterState({
             ...counterState,
@@ -30,8 +33,6 @@ function App() {
     }
 
     function resetCounters() {
-        // console.log(counterState);
-
         // Dynamisch resetten van de counters - ongeacht het aantal in het state-object,
         // Object.keys leest het object uit in een array om overheen te mappen
         // Object.fromEntries maakt van de array weer een object zoals de state terugverwacht
@@ -58,6 +59,7 @@ function App() {
         });
     }
 
+    // Verzend button logt zowel formState als counterState in de terminal
     function handleSubmit() {
         console.log(formState);
         console.log(counterState);
@@ -66,35 +68,36 @@ function App() {
     return (
         <>
             <h1>Fruitmand bezorgservice</h1>
+
             <section>
                 <FruitCounter
-                    icon = '🍓'
+                    icon='🍓'
                     title='Aardbeien'
-                    fruitType = 'strawberry'
-                    counter = {counterState.strawberryCounter}
-                    handleClick = {handleClick}
-                    />
+                    fruitType='strawberry'
+                    counter={counterState.strawberryCounter}
+                    handleClick={handleClick}
+                />
                 <FruitCounter
-                    icon = '🍌'
+                    icon='🍌'
                     title='Bananen'
-                    fruitType = 'banana'
-                    counter = {counterState.bananaCounter}
-                    handleClick = {handleClick}
+                    fruitType='banana'
+                    counter={counterState.bananaCounter}
+                    handleClick={handleClick}
                 />
                 <FruitCounter
-                    icon = '🍏'
+                    icon='🍏'
                     title='Appels'
-                    fruitType = 'apple'
-                    counter = {counterState.appleCounter}
-                    handleClick = {handleClick}
+                    fruitType='apple'
+                    counter={counterState.appleCounter}
+                    handleClick={handleClick}
                 />
                 <FruitCounter
-                    icon = '🥝'
-                    title= "Kiwi's"
-                    fruitType = 'kiwi'
-                    counter = {counterState.kiwiCounter}
-                    handleClick = {handleClick}
-                 />
+                    icon='🥝'
+                    title="Kiwi's"
+                    fruitType='kiwi'
+                    counter={counterState.kiwiCounter}
+                    handleClick={handleClick}
+                />
 
                 <Button
                     type='button'
@@ -104,94 +107,106 @@ function App() {
             </section>
 
             <form className="order-form">
-                <p><label htmlFor="firstname">Voornaam
-                    <input
-                        type="text"
-                        id="firstname"
-                        name="firstname"
-                        value={formState.firstname}
+                <p>
+                    <FormInputField
+                        title='Voornaam'
+                        name='firstName'
+                        value={formState.firstName}
                         onChange={handleChange}
                     />
-                </label></p>
-                <p><label htmlFor="lastname">Achternaam
-                    <input
-                        type="text"
-                        id="lastname"
-                        name="lastname"
-                        value={formState.lastname}
+                </p>
+                <p>
+                    <FormInputField
+                        title='Achternaam'
+                        name='lastName'
+                        value={formState.lastName}
                         onChange={handleChange}
-                    /></label></p>
-                <p><label htmlFor="age">Leeftijd
-                    <input
-                        type="text"
-                        id="age"
-                        name="age"
+                    />
+                </p>
+                <p>
+                    <FormInputField
+                        title='Leeftijd'
+                        name='age'
                         value={formState.age}
                         onChange={handleChange}
-                    /></label></p>
-                <p><label htmlFor="postcode">Postcode
-                    <input type="text"
-                           id="postcode"
-                           name="postcode"
-                           value={formState.postcode}
-                           onChange={handleChange}
-                    /></label></p>
-                <p><label htmlFor="delivery-frequency">Bezorgfrequentie</label></p>
-                <p><select
-                    name="deliveryFrequency"
-                    id="delivery-frequency"
-                    onChange={handleChange}>
-                    <option value="weekly">Iedere week</option>
-                    <option value="fortnightly">Om de week</option>
-                    <option value="monthly">Iedere maand</option>
-                </select></p>
-                <p><label htmlFor="day">
-                    <input
-                        type="radio"
-                        id="day"
-                        name="timeslot"
-                        value="day"
-                        checked={formState.timeslot === "day"}
+                    />
+                </p>
+                <p>
+                    <FormInputField
+                        title='Postcode'
+                        name='postCode'
+                        value={formState.postCode}
                         onChange={handleChange}
-                    />Overdag</label>
+                    />
+                </p>
+                <p>
+                    <label htmlFor="delivery-frequency">
+                        Bezorgfrequentie
+                    </label>
+                </p>
+                <p>
+                    <select
+                        name="deliveryFrequency"
+                        id="delivery-frequency"
+                        onChange={handleChange}>
+                        <option value="weekly">Iedere week</option>
+                        <option value="fortnightly">Om de week</option>
+                        <option value="monthly">Iedere maand</option>
+                    </select>
+                </p>
+                <p>
+                    <label htmlFor="day">
+                        <input
+                            type="radio"
+                            id="day"
+                            name="timeSlot"
+                            value="day"
+                            checked={formState.timeSlot === "day"}
+                            onChange={handleChange}
+                        />
+                        Overdag
+                    </label>
                     <label htmlFor="night">
                         <input
                             type="radio"
                             id="night"
-                            name="timeslot"
+                            name="timeSlot"
                             value="night"
-                            checked={formState.timeslot === "night"}
+                            checked={formState.timeSlot === "night"}
                             onChange={handleChange}
-                        />'s Avonds</label></p>
+                        />
+                        's Avonds
+                    </label>
+                </p>
                 <p>Opmerking</p>
                 <label htmlFor="comments">
                     <textarea
                         name="comments"
                         id="comments"
-                        cols="30"
+                        cols="50"
                         rows="10"
                         value={formState.comments}
                         onChange={handleChange}
-                    ></textarea></label>
-                <p><label htmlFor="terms"><input
-                    type="checkbox"
-                    name="terms"
-                    id="terms"
-                    checked={formState.terms}
-                    onChange={handleChange}
-
-                    />Ik ga akkoord met de voorwaarden</label></p>
-
-                {/*Verzend button logt zowel formState als counterState in de terminal*/}
+                    ></textarea>
+                </label>
+                <p>
+                    <label htmlFor="terms"><
+                        input
+                        type="checkbox"
+                        name="terms"
+                        id="terms"
+                        checked={formState.terms}
+                        onChange={handleChange}
+                    />
+                        Ik ga akkoord met de voorwaarden
+                    </label>
+                </p>
                 <Button
                     type='button'
                     title='Verzend'
                     onclick={handleSubmit}
                 />
-
             </form>
-
-
         </>
     )
 }
